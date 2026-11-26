@@ -40,7 +40,7 @@ content. Open **Receive > LTE Cell Scout**.
 
 | On screen | Meaning |
 |---|---|
-| `PLMN?` | taken from the preset |
+| `?` after an operator | taken from the preset, not read off the air (`+?`: more than one) |
 | `?` after a PCI | weak evidence |
 | `~` after a PCI | not seen in the last capture |
 | `*` after RSRP | CAL is 0 |
