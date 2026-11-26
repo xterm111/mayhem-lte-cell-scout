@@ -340,6 +340,10 @@ set(EXTCPPSRC
 	#p25_tx
 	external/p25_tx/main.cpp
 	external/p25_tx/ui_p25_tx.cpp
+
+	#ltecellscout
+	external/ltecellscout/main.cpp
+	external/ltecellscout/ui_ltecellscout.cpp
 )
 
 set(EXTAPPLIST
@@ -425,6 +429,7 @@ set(EXTAPPLIST
 	time_sink
 	kiss_tnc
 	p25_tx
+	ltecellscout
 )
 
 # sdusb has type conflicts with PRALINE (HackRF Pro) - add only for non-PRALINE builds
@@ -436,3 +441,11 @@ if(NOT BOARD STREQUAL "PRALINE")
        list(APPEND EXTAPPLIST sdusb)
 endif()
 
+
+# Keep GCC from making private clones of library functions that would be linked
+# into the main firmware instead of this app (that would break stock compatibility).
+set_source_files_properties(
+	external/ltecellscout/main.cpp
+	external/ltecellscout/ui_ltecellscout.cpp
+	PROPERTIES COMPILE_OPTIONS "-fno-ipa-cp;-fno-ipa-sra;-fno-partial-inlining"
+)

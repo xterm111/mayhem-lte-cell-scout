@@ -1,0 +1,104 @@
+# Cell Scout preset: United Kingdom, LTE only
+# Compiled 2026-11-26 from public sources. Not verified on air.
+#
+# Records
+#   OP,<plmn>,<name>
+#   CARRIER,<DL EARFCN>,<bandwidth MHz>,<plmn[+plmn] or ->,<confidence>
+#   BLOCK,<DL start MHz>,<DL end MHz>,<plmn[+plmn] or ->
+#   SWEEP,<band>            include the band in "All"
+# A band with CARRIER lines is searched on those channels only. For others,
+# set List to none, which searches blind.
+#
+# Confidence: A = two sources agree, B = one source, C = sources conflict
+# "-" = operator unclear. Bandwidth is a hint (0 = not stated); the MIB decides.
+#
+# Sources
+#   S1 https://mastdatabase.co.uk/gb/arfcn-list/  (observed EARFCNs, 2026-11-17)
+#   S2 https://pedroc.co.uk/content/uk-commercial-mobile-spectrum  (Sept 2026)
+#
+# Spectrum is moving after the Vodafone/Three merger (some to O2), so expect
+# changes. VodafoneThree carriers may broadcast both 234-15 and 234-20.
+# O2 and EE network codes come from a commercial lookup site only.
+
+OP,234-10,O2
+OP,234-15,Vodafone
+OP,234-20,Three
+OP,234-30,EE
+
+# B1 2100
+BLOCK,2110.3,2130.3,234-15+234-20
+BLOCK,2130.3,2149.7,234-10
+BLOCK,2149.7,2169.7,234-30
+CARRIER,76,15,234-20,B
+CARRIER,97,10,234-20,B
+CARRIER,98,10,234-20,B
+CARRIER,99,10,234-20,B
+# S1 and the S2 blocks disagree on who holds the next four
+CARRIER,199,10,-,C
+CARRIER,299,0,-,C
+CARRIER,323,0,-,C
+CARRIER,347,0,-,C
+CARRIER,497,20,234-30,A
+CARRIER,522,15,234-30,A
+
+# B3 1800
+CARRIER,1226,5,234-10,B
+CARRIER,1228,0,234-10,B
+CARRIER,1288,5,234-15,B
+CARRIER,1363,20,234-15+234-20,B
+CARRIER,1392,15,234-20,B
+CARRIER,1617,20,234-30,B
+CARRIER,1761,10,234-30,B
+CARRIER,1788,0,234-30,B
+CARRIER,1791,0,234-30,B
+CARRIER,1815,20,234-30,B
+
+# B7 2600 FDD
+CARRIER,2850,20,234-15,B
+CARRIER,3026,0,234-30,B
+CARRIER,3029,0,234-30,B
+CARRIER,3152,0,234-30,B
+CARRIER,3179,0,234-30,B
+CARRIER,3350,0,234-30,B
+
+# B8 900
+CARRIER,3500,10,234-15,B
+CARRIER,3501,10,234-15,B
+CARRIER,3623,10,234-15,B
+CARRIER,3624,10,234-15,B
+CARRIER,3625,10,234-15,B
+CARRIER,3700,5,234-10,B
+CARRIER,3725,10,234-10,B
+
+# B20 800
+CARRIER,6175,5,234-20,B
+CARRIER,6225,5,234-30,A
+CARRIER,6300,10,234-15,B
+CARRIER,6400,10,234-10,A
+
+# B28 700
+CARRIER,9260,0,234-10,B
+CARRIER,9360,0,234-20,B
+CARRIER,9460,0,234-30,B
+
+# B32 1.4 GHz (downlink only). S1 says Vodafone for 10020, S2 says O2
+CARRIER,10020,20,-,C
+CARRIER,10170,10,234-20,B
+CARRIER,10195,15,234-20,B
+CARRIER,10220,20,234-20,B
+
+# B38 2600 TDD
+CARRIER,37900,20,234-15,B
+CARRIER,38100,20,234-10,B
+CARRIER,38125,15,234-10,B
+
+# B40 2300 TDD
+CARRIER,39250,20,234-10,A
+CARRIER,39448,20,234-10,A
+
+SWEEP,1
+SWEEP,3
+SWEEP,7
+SWEEP,8
+SWEEP,20
+SWEEP,28

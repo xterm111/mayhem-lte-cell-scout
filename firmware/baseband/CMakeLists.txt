@@ -506,6 +506,17 @@ DeclareTargets(PFUT flash_utility)
 set(add_to_firmware FALSE)
 set(MODE_FLAGS "-O3")
 
+### LTE Cell Scout (external app only)
+
+set(MODE_CPPSRC
+	proc_ltecellscout.cpp
+	ltecellscout_dsp.cpp
+)
+set(MODE_FLAGS_BEFORE_LCS "${MODE_FLAGS}")
+set(MODE_FLAGS "-Os")  # the app and this image share 32 KB
+DeclareTargets(PLCS ltecellscout)
+set(MODE_FLAGS "${MODE_FLAGS_BEFORE_LCS}")
+
 ### FLEX RX
 
 set(MODE_CPPSRC

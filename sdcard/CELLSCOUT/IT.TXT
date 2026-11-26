@@ -1,0 +1,74 @@
+# Cell Scout preset: Italy, LTE only
+# Compiled 2026-11-26 from public sources. Not verified on air.
+#
+# Records
+#   OP,<plmn>,<name>
+#   CARRIER,<DL EARFCN>,<bandwidth MHz>,<plmn[+plmn] or ->,<confidence>
+#   BLOCK,<DL start MHz>,<DL end MHz>,<plmn[+plmn] or ->
+#   SWEEP,<band>            include the band in "All"
+# A band with CARRIER lines is searched on those channels only. For others,
+# set List to none, which searches blind.
+#
+# Confidence: A = two sources agree, B = one source,
+#             D = channel number worked out from the spectrum block
+# The bandwidth is a hint (0 = not stated); the cell's MIB decides.
+#
+# Sources
+#   S1 https://www.spectrum-tracker.com/Italy and /Italy/ILIAD
+#      (blocks, updated 2026-11-20, cites MIMIT; only some rows are public)
+#   S2 https://lteitaly.it/spectrum.php  (EARFCNs, seen only as a search excerpt)
+#
+# Not found: most B1 carriers, B8 except iliad, B32 and B38 positions.
+# Search those with List set to none. WindTre and iliad share some rural sites.
+
+OP,222-01,TIM
+OP,222-10,Vodafone
+OP,222-50,iliad
+OP,222-88,WindTre
+
+# B1 2100
+BLOCK,2145,2155,222-50
+CARRIER,275,15,222-01,B
+CARRIER,400,10,222-50,D
+
+# B3 1800
+BLOCK,1830,1840,222-50
+CARRIER,1350,20,222-01,B
+CARRIER,1500,10,222-50,A
+CARRIER,1650,20,222-88,B
+CARRIER,1850,20,222-10,B
+
+# B7 2600 FDD
+BLOCK,2630,2640,222-50
+CARRIER,2900,10,222-50,D
+CARRIER,3025,15,222-10,B
+CARRIER,3175,15,222-01,B
+CARRIER,3350,20,222-88,B
+
+# B8 900
+BLOCK,925.1,930.1,222-50
+CARRIER,3476,5,222-50,D
+
+# B20 800
+BLOCK,791,801,222-88
+BLOCK,801,811,222-01
+CARRIER,6200,10,222-88,A
+CARRIER,6300,10,222-01,A
+CARRIER,6400,10,222-10,B
+
+# B28 700
+BLOCK,758,768,222-50
+BLOCK,768,778,222-01
+BLOCK,778,788,222-10
+CARRIER,9260,10,222-50,D
+CARRIER,9360,10,222-01,D
+CARRIER,9460,10,222-10,D
+
+SWEEP,1
+SWEEP,3
+SWEEP,7
+SWEEP,8
+SWEEP,20
+SWEEP,28
+SWEEP,32
+SWEEP,38
